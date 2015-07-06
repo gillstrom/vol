@@ -32,4 +32,3 @@ if (!cli.input.length) {
 		}
 	});
 }
-
