@@ -72,7 +72,7 @@ Set volume level.
 *Required*
 Type: `number`
 
-A number between `0` and `1.
+A number between `0` and `1`.
 
 #### callback(err)
   
