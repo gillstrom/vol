@@ -1,0 +1,40 @@
+{
+  "name": "vol",
+  "version": "1.0.0",
+  "description": "Get and set volume.",
+  "license": "MIT",
+  "repository": "gillstrom/vol",
+  "author": {
+    "email": "andreasgillstrom@gmail.com",
+    "name": "Andreas Gillström",
+    "url": "github.com/gillstrom"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "cli.js",
+    "index.js"
+  ],
+  "keywords": [
+    "cli",
+    "cli-app",
+    "mac",
+    "osx",
+    "sound",
+    "vol",
+    "volume"
+  ],
+  "dependencies": {
+    "meow": "^3.3.0",
+    "osx-vol": "^1.0.2",
+    "to-percent": "^1.0.2"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4"
+  }
+}
