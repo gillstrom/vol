@@ -1,7 +1,8 @@
 # vol [![Build Status](https://travis-ci.org/gillstrom/vol.svg?branch=master)](https://travis-ci.org/gillstrom/vol)
 
 > Get and set volume.
-*Currently only supported in OS X systems.*
+
+*Currently only supported in OS X and Linux systems.*
 
 
 ## Install
