@@ -22,13 +22,13 @@ if (!cli.input.length) {
 
 		console.log(toPercent(level) + '%');
 	});
-} else {
-	var level = cli.input[0] === 'mute' ? 0 : cli.input[0];
 
-	vol.set(level, function (err) {
-		if (err) {
-			console.error(err.message);
-			process.exit(1);
-		}
-	});
+	return;
 }
+
+vol.set(cli.input[0] === 'mute' ? 0 : cli.input[0], function (err) {
+	if (err) {
+		console.error(err.message);
+		process.exit(1);
+	}
+});

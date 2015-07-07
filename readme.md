@@ -79,6 +79,8 @@ A number between `0` and `1`.
   
 Type: `function`
 
+Returns nothing but a possible exception.
+
 
 ## License
 
