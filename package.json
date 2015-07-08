@@ -32,7 +32,8 @@
   "dependencies": {
     "meow": "^3.3.0",
     "osx-vol": "^1.0.2",
-    "to-percent": "^1.0.2"
+    "to-percent": "^1.0.2",
+    "linux-vol": "^1.0.1"
   },
   "devDependencies": {
     "ava": "^0.0.4"
