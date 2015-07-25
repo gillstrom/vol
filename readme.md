@@ -1,6 +1,6 @@
 # vol [![Build Status](https://travis-ci.org/gillstrom/vol.svg?branch=master)](https://travis-ci.org/gillstrom/vol)
 
-> Get and set volume.
+> Get and set sound volume.
 
 *Currently only supported in OS X and Linux systems.*
 
@@ -41,9 +41,9 @@ $ npm install --global vol
 ```
 $ vol --help
 
-  Example
-    $ vol
-    $ vol 0.4
+  Usage
+    $ vol (Interactive CLI)
+    $ vol <level>
     $ vol mute
 ```
 

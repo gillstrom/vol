@@ -12,7 +12,7 @@ if (!process.env.CI) {
 		});
 	});
 
-	test('set level to 50%', function (t) {
+	test('set level to 30%', function (t) {
 		t.plan(3);
 
 		vol.set(0.3, function (err) {

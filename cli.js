@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 'use strict';
-var meow = require('meow');
+var progressControl = require('progress-control');
+var indentString = require('indent-string');
+var cliCursor = require('cli-cursor');
 var toPercent = require('to-percent');
+var firstRun = require('first-run');
+var chalk = require('chalk');
+var meow = require('meow');
 var vol = require('./');
 
 var cli = meow({
 	help: [
-		'Example',
-		'  $ vol',
-		'  $ vol 0.4',
+		'Usage',
+		'  $ vol (Interactive CLI)',
+		'  $ vol <level>',
 		'  $ vol mute'
 	]
 });
@@ -20,7 +25,44 @@ if (!cli.input.length) {
 			process.exit(1);
 		}
 
-		console.log(toPercent(level) + '%');
+		if (!process.stdin.isTTY) {
+			console.log(val);
+			return;
+		}
+
+		function updateBar(level) {
+			vol.set(level, function (err) {
+				if (err) {
+					console.error(err.message);
+					process.exit(1);
+				}
+			});
+
+			var str = toPercent(level) + '%';
+			var maxLength = 5;
+			bar.update(level, {level: indentString(str, ' ', maxLength - str.length)});
+		}
+
+		cliCursor.hide();
+
+		var text = '[:bar] :level';
+
+		if (firstRun()) {
+			text += '   ' + chalk.dim('Use up/down arrows');
+		}
+
+		var bar = progressControl(text, {total: 10}, {
+			up: function () {
+				level = Math.min(Math.round((level + 0.1) * 10) / 10, 1);
+				updateBar(level);
+			},
+			down: function () {
+				level = Math.max(Math.round((level - 0.1) * 10) / 10, 0);
+				updateBar(level);
+			}
+		});
+
+		updateBar(level);
 	});
 
 	return;

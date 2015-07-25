@@ -1,7 +1,7 @@
 {
   "name": "vol",
   "version": "1.1.0",
-  "description": "Get and set volume.",
+  "description": "Get and set sound volume.",
   "license": "MIT",
   "repository": "gillstrom/vol",
   "author": {
@@ -21,8 +21,10 @@
     "index.js"
   ],
   "keywords": [
+    "app",
     "cli",
     "cli-app",
+    "interactive",
     "linux",
     "mac",
     "osx",
@@ -31,9 +33,14 @@
     "volume"
   ],
   "dependencies": {
+    "chalk": "^1.1.0",
+    "cli-cursor": "^1.0.1",
+    "first-run": "^1.0.0",
+    "indent-string": "^2.0.0",
     "linux-vol": "^1.0.1",
     "meow": "^3.3.0",
     "osx-vol": "^1.0.2",
+    "progress-control": "^1.0.0",
     "to-percent": "^1.0.2"
   },
   "devDependencies": {
