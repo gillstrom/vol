@@ -39,7 +39,7 @@ if (!cli.input.length) {
 			});
 
 			var str = toPercent(level) + '%';
-			var maxLength = 5;
+			var maxLength = 4;
 			bar.update(level, {level: indentString(str, ' ', maxLength - str.length)});
 		}
 

@@ -34,6 +34,8 @@ vol.mute(function (err) {
 
 ## CLI
 
+<img width="283" src="screenshot.png">
+
 ```
 $ npm install --global vol
 ```
