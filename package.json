@@ -18,7 +18,8 @@
   },
   "files": [
     "cli.js",
-    "index.js"
+    "index.js",
+    "vendor"
   ],
   "keywords": [
     "app",
@@ -36,11 +37,13 @@
     "chalk": "^1.1.0",
     "cli-cursor": "^1.0.1",
     "first-run": "^1.0.0",
+    "in-range": "^1.0.0",
     "indent-string": "^2.0.0",
     "linux-vol": "^1.0.1",
     "meow": "^3.3.0",
     "osx-vol": "^1.0.2",
     "progress-control": "^1.0.0",
+    "to-decimal": "^2.0.0",
     "to-percent": "^1.0.2"
   },
   "devDependencies": {

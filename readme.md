@@ -2,8 +2,6 @@
 
 > Get and set sound volume.
 
-*Currently only supported in OS X and Linux systems.*
-
 
 ## Install
 
