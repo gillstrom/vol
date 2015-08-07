@@ -26,9 +26,21 @@ if (!cli.input.length) {
 		}
 
 		if (!process.stdin.isTTY) {
-			console.log(val);
+			console.log(level);
 			return;
 		}
+
+		var text = '[:bar] :level';
+		var bar = progressControl(text, {total: 10}, {
+			up: function () {
+				level = Math.min(Math.round((level + 0.1) * 10) / 10, 1);
+				updateBar(level);
+			},
+			down: function () {
+				level = Math.max(Math.round((level - 0.1) * 10) / 10, 0);
+				updateBar(level);
+			}
+		});
 
 		function updateBar(level) {
 			vol.set(level, function (err) {
@@ -45,22 +57,9 @@ if (!cli.input.length) {
 
 		cliCursor.hide();
 
-		var text = '[:bar] :level';
-
 		if (firstRun()) {
 			text += '   ' + chalk.dim('Use up/down arrows');
 		}
-
-		var bar = progressControl(text, {total: 10}, {
-			up: function () {
-				level = Math.min(Math.round((level + 0.1) * 10) / 10, 1);
-				updateBar(level);
-			},
-			down: function () {
-				level = Math.max(Math.round((level - 0.1) * 10) / 10, 0);
-				updateBar(level);
-			}
-		});
 
 		updateBar(level);
 	});
