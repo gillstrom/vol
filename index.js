@@ -11,7 +11,7 @@ if (process.platform === 'darwin') {
 	module.exports = require('linux-vol');
 } else {
 	module.exports.get = function (cb) {
-		execFile(path.join(__dirname, 'vendor/get-volume.exe'), function (err, stdout) {
+		execFile(path.join(__dirname, 'vendor/volume.exe'), function (err, stdout) {
 			if (err) {
 				cb(err);
 				return;
@@ -31,7 +31,7 @@ if (process.platform === 'darwin') {
 			return;
 		}
 
-		execFile(path.join(__dirname, 'vendor/set-volume.exe'), [toPercent(level)], function (err) {
+		execFile(path.join(__dirname, 'vendor/volume.exe'), [toPercent(level)], function (err) {
 			if (err) {
 				cb(err);
 				return;
