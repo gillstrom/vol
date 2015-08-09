@@ -10,8 +10,8 @@
     "url": "github.com/gillstrom"
   },
   "bin": {
-	"vol": "cli.js",
-	"volume": "cli.js"
+    "vol": "cli.js",
+    "volume": "cli.js"
   },
   "engines": {
     "node": ">=0.10.0"
