@@ -9,7 +9,10 @@
     "name": "Andreas Gillström",
     "url": "github.com/gillstrom"
   },
-  "bin": "cli.js",
+  "bin": {
+	"vol": "cli.js",
+	"volume": "cli.js"
+  },
   "engines": {
     "node": ">=0.10.0"
   },
