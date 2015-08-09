@@ -47,6 +47,8 @@ $ vol --help
     $ vol mute
 ```
 
+If encountering any problems in Windows, use the `volume` alias.
+
 
 ## API
 
