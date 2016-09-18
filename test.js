@@ -1,27 +1,11 @@
-'use strict';
-var test = require('ava');
-var vol = require('./');
+import test from 'ava';
+import m from './';
 
-if (!process.env.CI) {
-	test('get level', function (t) {
-		t.plan(2);
+test('get level', async t => {
+	t.is(typeof (await m.get()), 'number');
+});
 
-		vol.get(function (err, level) {
-			t.assert(!err, err);
-			t.assert(typeof level === 'number');
-		});
-	});
-
-	test('set level to 30%', function (t) {
-		t.plan(3);
-
-		vol.set(0.3, function (err) {
-			t.assert(!err, err);
-
-			vol.get(function (err, level) {
-				t.assert(!err, err);
-				t.assert(level === 0.3);
-			});
-		});
-	});
-}
+test('set level to 30%', async t => {
+	await m.set(0.3);
+	t.is(await m.get(), 0.3);
+});
