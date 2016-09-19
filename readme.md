@@ -1,6 +1,6 @@
-# vol [![Build Status](https://travis-ci.org/gillstrom/vol.svg?branch=master)](https://travis-ci.org/gillstrom/vol)
+# vol
 
-> Get and set sound volume.
+> Get and set sound volume
 
 
 ## Install
@@ -13,19 +13,15 @@ $ npm install --save vol
 ## Usage
 
 ```js
-var vol = require('vol');
+const vol = require('vol');
 
-vol.get(function (err, level) {
+vol.get().then(level => {
 	console.log(level);
 	//=> 0.45
 });
 
-vol.set(0.65, function (err) {
+vol.set(0.65).then(() => {
 	console.log('Changed volume to 65%');
-});
-
-vol.mute(function (err) {
-	console.log('Volume muted');
 });
 ```
 
@@ -52,36 +48,19 @@ If encountering any problems in Windows, use the `volume` alias.
 
 ## API
 
-### .get(callback)
+### .get()
 
 Get volume level.
 
-#### callback(err, level)
-  
-Type: `function`
-
-##### level
-
-Type: `number`
-
-Current volume level.
-
-### .set(level, callback)
+### .set(level)
 
 Set volume level.
 
 #### level
 
-*Required*
 Type: `number`
 
 A number between `0` and `1`.
-
-#### callback(err)
-  
-Type: `function`
-
-Returns nothing but a possible exception.
 
 
 ## License

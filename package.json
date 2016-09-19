@@ -1,12 +1,12 @@
 {
   "name": "vol",
   "version": "2.1.1",
-  "description": "Get and set sound volume.",
+  "description": "Get and set sound volume",
   "license": "MIT",
   "repository": "gillstrom/vol",
   "author": {
-    "email": "andreasgillstrom@gmail.com",
     "name": "Andreas Gillström",
+    "email": "andreasgillstrom@gmail.com",
     "url": "github.com/gillstrom"
   },
   "bin": {
@@ -14,14 +14,15 @@
     "volume": "cli.js"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
-    "test": "xo && node test.js"
+    "test": "xo && ava"
   },
   "files": [
     "cli.js",
     "index.js",
+    "lib",
     "vendor"
   ],
   "keywords": [
@@ -39,18 +40,21 @@
   "dependencies": {
     "chalk": "^1.1.0",
     "cli-cursor": "^1.0.1",
+    "execa": "^0.4.0",
     "first-run": "^1.0.0",
     "in-range": "^1.0.0",
-    "indent-string": "^2.0.0",
-    "linux-vol": "^1.0.1",
+    "indent-string": "^3.0.0",
     "meow": "^3.3.0",
-    "osx-vol": "^1.0.2",
     "progress-control": "^1.0.0",
+    "run-applescript": "^3.0.0",
     "to-decimal": "^2.0.0",
     "to-percent": "^1.0.2"
   },
   "devDependencies": {
-    "ava": "^0.0.4",
+    "ava": "*",
     "xo": "*"
+  },
+  "xo": {
+    "esnext": true
   }
 }

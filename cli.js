@@ -1,75 +1,58 @@
 #!/usr/bin/env node
 'use strict';
-var progressControl = require('progress-control');
-var indentString = require('indent-string');
-var cliCursor = require('cli-cursor');
-var toPercent = require('to-percent');
-var firstRun = require('first-run');
-var chalk = require('chalk');
-var meow = require('meow');
-var vol = require('./');
+const progressControl = require('progress-control');
+const indentString = require('indent-string');
+const cliCursor = require('cli-cursor');
+const toPercent = require('to-percent');
+const firstRun = require('first-run');
+const chalk = require('chalk');
+const meow = require('meow');
+const vol = require('./');
 
-var cli = meow({
-	help: [
-		'Usage',
-		'  $ vol (Interactive CLI)',
-		'  $ vol <level>',
-		'  $ vol mute'
-	]
-});
+const cli = meow(`
+	Usage
+	  $ vol (Interactive CLI)'
+	  $ vol <level>'
+	  $ vol mute
+`);
 
-if (!cli.input.length) {
-	vol.get(function (err, level) {
-		if (err) {
-			console.error(err.message);
-			process.exit(1);
-		}
-
+if (cli.input.length === 0) {
+	return vol.get().then(level => {
 		if (!process.stdin.isTTY) {
 			console.log(level);
 			return;
 		}
 
-		var text = '[:bar] :level';
-		var bar = progressControl(text, {total: 10}, {
-			up: function () {
+		let text = '[:bar] :level';
+
+		const updateBar = (level, bar) => {
+			vol.set(level);
+
+			const str = toPercent(level) + '%';
+			const maxLength = 4;
+
+			bar.update(level, {level: indentString(str, maxLength - str.length)});
+		};
+
+		const bar = progressControl(text, {total: 10}, {
+			up: () => {
 				level = Math.min(Math.round((level + 0.1) * 10) / 10, 1);
-				updateBar(level);
+				updateBar(level, bar);
 			},
-			down: function () {
+			down: () => {
 				level = Math.max(Math.round((level - 0.1) * 10) / 10, 0);
-				updateBar(level);
+				updateBar(level, bar);
 			}
 		});
-
-		function updateBar(level) {
-			vol.set(level, function (err) {
-				if (err) {
-					console.error(err.message);
-					process.exit(1);
-				}
-			});
-
-			var str = toPercent(level) + '%';
-			var maxLength = 4;
-			bar.update(level, {level: indentString(str, ' ', maxLength - str.length)});
-		}
 
 		cliCursor.hide();
 
 		if (firstRun()) {
-			text += '   ' + chalk.dim('Use up/down arrows');
+			text += `    ${chalk.dim('Use up/down arrows')}`;
 		}
 
-		updateBar(level);
+		updateBar(level, bar);
 	});
-
-	return;
 }
 
-vol.set(cli.input[0] === 'mute' ? 0 : cli.input[0], function (err) {
-	if (err) {
-		console.error(err.message);
-		process.exit(1);
-	}
-});
+vol.set(cli.input[0] === 'mute' ? 0 : cli.input[0]);
