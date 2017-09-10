@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './';
+import m from '.';
 
 test('get level', async t => {
 	t.is(typeof (await m.get()), 'number');

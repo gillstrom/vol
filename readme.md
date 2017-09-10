@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save vol
+$ npm install vol
 ```
 
 
@@ -50,7 +50,7 @@ If encountering any problems in Windows, use the `volume` alias.
 
 ### .get()
 
-Get volume level.
+Returns `Promise` with the current volume level.
 
 ### .set(level)
 

@@ -16,43 +16,48 @@ const cli = meow(`
 	  $ vol mute
 `);
 
-if (cli.input.length === 0) {
-	return vol.get().then(level => {
-		if (!process.stdin.isTTY) {
-			console.log(level);
-			return;
+const updateBar = (level, bar) => vol.set(level).then(() => {
+	const str = toPercent(level) + '%';
+	const maxLength = 4;
+
+	bar.update(level, {level: indentString(str, maxLength - str.length, ' ')});
+});
+
+const getBar = (level, text) => {
+	const bar = progressControl(text, {total: 10}, {
+		up() {
+			level = Math.min(Math.round((level + 0.1) * 10) / 10, 1);
+			updateBar(level, bar);
+		},
+		down() {
+			level = Math.max(Math.round((level - 0.1) * 10) / 10, 0);
+			updateBar(level, bar);
 		}
-
-		let text = '[:bar] :level';
-
-		const updateBar = (level, bar) => {
-			vol.set(level);
-
-			const str = toPercent(level) + '%';
-			const maxLength = 4;
-
-			bar.update(level, {level: indentString(str, maxLength - str.length)});
-		};
-
-		const bar = progressControl(text, {total: 10}, {
-			up: () => {
-				level = Math.min(Math.round((level + 0.1) * 10) / 10, 1);
-				updateBar(level, bar);
-			},
-			down: () => {
-				level = Math.max(Math.round((level - 0.1) * 10) / 10, 0);
-				updateBar(level, bar);
-			}
-		});
-
-		cliCursor.hide();
-
-		if (firstRun()) {
-			text += `    ${chalk.dim('Use up/down arrows')}`;
-		}
-
-		updateBar(level, bar);
 	});
-}
 
-vol.set(cli.input[0] === 'mute' ? 0 : cli.input[0]);
+	return bar;
+};
+
+const main = level => {
+	if (!process.stdin.isTTY) {
+		console.log(level);
+		return;
+	}
+
+	let text = '[:bar] :level';
+
+	if (firstRun()) {
+		text += `    ${chalk.dim('Use up/down arrows')}`;
+	}
+
+	const bar = getBar(level, text);
+
+	cliCursor.hide();
+	updateBar(level, bar);
+};
+
+if (cli.input.length === 0) {
+	vol.get().then(level => main(level));
+} else {
+	vol.set(cli.input[0] === 'mute' ? 0 : cli.input[0]);
+}
