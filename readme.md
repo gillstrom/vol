@@ -26,26 +26,6 @@ vol.set(0.65).then(() => {
 ```
 
 
-## CLI
-
-<img width="283" src="screenshot.png">
-
-```
-$ npm install --global vol
-```
-
-```
-$ vol --help
-
-  Usage
-    $ vol (Interactive CLI)
-    $ vol <level>
-    $ vol mute
-```
-
-If encountering any problems in Windows, use the `volume` alias.
-
-
 ## API
 
 ### .get()
@@ -61,6 +41,11 @@ Set volume level.
 Type: `number`
 
 A number between `0` and `1`.
+
+
+## Related
+
+* [vol-cli](https://github.com/gillstrom/vol-cli) - CLI for this module
 
 
 ## License

@@ -9,10 +9,6 @@
 		"email": "andreasgillstrom@gmail.com",
 		"url": "github.com/gillstrom"
 	},
-	"bin": {
-		"vol": "cli.js",
-		"volume": "cli.js"
-	},
 	"engines": {
 		"node": ">=4"
 	},
@@ -20,7 +16,6 @@
 		"test": "xo && ava"
 	},
 	"files": [
-		"cli.js",
 		"index.js",
 		"lib",
 		"vendor"
@@ -38,14 +33,8 @@
 		"volume"
 	],
 	"dependencies": {
-		"chalk": "^2.1.0",
-		"cli-cursor": "^2.1.0",
 		"execa": "^0.8.0",
-		"first-run": "^1.0.0",
 		"in-range": "^1.0.0",
-		"indent-string": "^3.0.0",
-		"meow": "^3.3.0",
-		"progress-control": "^1.0.0",
 		"run-applescript": "^3.0.0",
 		"to-decimal": "^2.0.0",
 		"to-percent": "^1.0.2"
